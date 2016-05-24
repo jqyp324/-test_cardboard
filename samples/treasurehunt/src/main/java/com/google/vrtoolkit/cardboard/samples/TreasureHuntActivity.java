@@ -16,19 +16,19 @@
 
 package com.google.vrtoolkit.cardboard.samples.treasurehunt;
 
-import com.google.vrtoolkit.cardboard.CardboardActivity;
-import com.google.vrtoolkit.cardboard.CardboardView;
-import com.google.vrtoolkit.cardboard.Eye;
-import com.google.vrtoolkit.cardboard.HeadTransform;
-import com.google.vrtoolkit.cardboard.Viewport;
-import com.google.vrtoolkit.cardboard.audio.CardboardAudioEngine;
-
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
+
+import com.google.vrtoolkit.cardboard.CardboardActivity;
+import com.google.vrtoolkit.cardboard.CardboardView;
+import com.google.vrtoolkit.cardboard.Eye;
+import com.google.vrtoolkit.cardboard.HeadTransform;
+import com.google.vrtoolkit.cardboard.Viewport;
+import com.google.vrtoolkit.cardboard.audio.CardboardAudioEngine;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -115,6 +115,9 @@ public class TreasureHuntActivity
   private float objectDistance = MAX_MODEL_DISTANCE / 2.0f;
   private float floorDepth = 20f;
 
+  /**
+   * 震动
+   */
   private Vibrator vibrator;
 
   private CardboardAudioEngine cardboardAudioEngine;
@@ -237,48 +240,48 @@ public class TreasureHuntActivity
     Log.i(TAG, "onSurfaceCreated");
     GLES20.glClearColor(0.1f, 0.1f, 0.1f, 0.5f); // Dark background so text shows up well.
 
-    ByteBuffer bbVertices = ByteBuffer.allocateDirect(WorldLayoutData.CUBE_COORDS.length * 4);
+    ByteBuffer bbVertices = ByteBuffer.allocateDirect(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.CUBE_COORDS.length * 4);
     bbVertices.order(ByteOrder.nativeOrder());
     cubeVertices = bbVertices.asFloatBuffer();
-    cubeVertices.put(WorldLayoutData.CUBE_COORDS);
+    cubeVertices.put(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.CUBE_COORDS);
     cubeVertices.position(0);
 
-    ByteBuffer bbColors = ByteBuffer.allocateDirect(WorldLayoutData.CUBE_COLORS.length * 4);
+    ByteBuffer bbColors = ByteBuffer.allocateDirect(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.CUBE_COLORS.length * 4);
     bbColors.order(ByteOrder.nativeOrder());
     cubeColors = bbColors.asFloatBuffer();
-    cubeColors.put(WorldLayoutData.CUBE_COLORS);
+    cubeColors.put(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.CUBE_COLORS);
     cubeColors.position(0);
 
     ByteBuffer bbFoundColors =
-        ByteBuffer.allocateDirect(WorldLayoutData.CUBE_FOUND_COLORS.length * 4);
+        ByteBuffer.allocateDirect(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.CUBE_FOUND_COLORS.length * 4);
     bbFoundColors.order(ByteOrder.nativeOrder());
     cubeFoundColors = bbFoundColors.asFloatBuffer();
-    cubeFoundColors.put(WorldLayoutData.CUBE_FOUND_COLORS);
+    cubeFoundColors.put(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.CUBE_FOUND_COLORS);
     cubeFoundColors.position(0);
 
-    ByteBuffer bbNormals = ByteBuffer.allocateDirect(WorldLayoutData.CUBE_NORMALS.length * 4);
+    ByteBuffer bbNormals = ByteBuffer.allocateDirect(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.CUBE_NORMALS.length * 4);
     bbNormals.order(ByteOrder.nativeOrder());
     cubeNormals = bbNormals.asFloatBuffer();
-    cubeNormals.put(WorldLayoutData.CUBE_NORMALS);
+    cubeNormals.put(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.CUBE_NORMALS);
     cubeNormals.position(0);
 
     // make a floor
-    ByteBuffer bbFloorVertices = ByteBuffer.allocateDirect(WorldLayoutData.FLOOR_COORDS.length * 4);
+    ByteBuffer bbFloorVertices = ByteBuffer.allocateDirect(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.FLOOR_COORDS.length * 4);
     bbFloorVertices.order(ByteOrder.nativeOrder());
     floorVertices = bbFloorVertices.asFloatBuffer();
-    floorVertices.put(WorldLayoutData.FLOOR_COORDS);
+    floorVertices.put(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.FLOOR_COORDS);
     floorVertices.position(0);
 
-    ByteBuffer bbFloorNormals = ByteBuffer.allocateDirect(WorldLayoutData.FLOOR_NORMALS.length * 4);
+    ByteBuffer bbFloorNormals = ByteBuffer.allocateDirect(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.FLOOR_NORMALS.length * 4);
     bbFloorNormals.order(ByteOrder.nativeOrder());
     floorNormals = bbFloorNormals.asFloatBuffer();
-    floorNormals.put(WorldLayoutData.FLOOR_NORMALS);
+    floorNormals.put(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.FLOOR_NORMALS);
     floorNormals.position(0);
 
-    ByteBuffer bbFloorColors = ByteBuffer.allocateDirect(WorldLayoutData.FLOOR_COLORS.length * 4);
+    ByteBuffer bbFloorColors = ByteBuffer.allocateDirect(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.FLOOR_COLORS.length * 4);
     bbFloorColors.order(ByteOrder.nativeOrder());
     floorColors = bbFloorColors.asFloatBuffer();
-    floorColors.put(WorldLayoutData.FLOOR_COLORS);
+    floorColors.put(com.google.vrtoolkit.cardboard.samples.treasurehunt.WorldLayoutData.FLOOR_COLORS);
     floorColors.position(0);
 
     int vertexShader = loadGLShader(GLES20.GL_VERTEX_SHADER, R.raw.light_vertex);
