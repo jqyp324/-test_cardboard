@@ -1,7 +1,6 @@
 package se.jayway.opengl.tutorial;
 
 import android.app.Activity;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,8 +14,7 @@ public class TutorialPartI extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN); // (NEW)
 
- 		GLSurfaceView view = new GLSurfaceView(this);
-   		view.setRenderer(new OpenGLRenderer());
+ 		OpenGlSurfaceView view = new OpenGlSurfaceView(this,new OpenGLRenderer());
    		setContentView(view);
     }
 }
