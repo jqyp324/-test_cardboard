@@ -19,15 +19,15 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class MyRenderer implements GLSurfaceView.Renderer {
 
-    private float angley,anglex;
+    private float angley, anglex;
 
-    public void setAngle(float x,float y){
+    public void setAngle(float x, float y) {
         anglex = x;
         angley = y;
     }
 
     // 立方体的顶点座标（一共是36个顶点，组成12个三角形）
-    private float[] cubeVertices = { -0.6f, -0.6f, -0.6f, -0.6f, 0.6f,
+    private float[] cubeVertices = {-0.6f, -0.6f, -0.6f, -0.6f, 0.6f,
             -0.6f, 0.6f, 0.6f, -0.6f, 0.6f, 0.6f, -0.6f, 0.6f, -0.6f,
             -0.6f, -0.6f, -0.6f, -0.6f, -0.6f, -0.6f, 0.6f, 0.6f, -0.6f,
             0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, -0.6f, 0.6f, 0.6f,
@@ -39,13 +39,13 @@ public class MyRenderer implements GLSurfaceView.Renderer {
             0.6f, 0.6f, -0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f,
             -0.6f, -0.6f, 0.6f, -0.6f, -0.6f, -0.6f, -0.6f, -0.6f, -0.6f,
             0.6f, -0.6f, -0.6f, 0.6f, -0.6f, 0.6f, 0.6f, -0.6f, 0.6f,
-            -0.6f, };
+            -0.6f,};
     // 定义立方体所需要的6个面（一共是12个三角形所需的顶点）
-    private byte[] cubeFacets = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+    private byte[] cubeFacets = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
             13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
-            29, 30, 31, 32, 33, 34, 35, };
+            29, 30, 31, 32, 33, 34, 35,};
     // 定义纹理贴图的座标数据
-    private float[] cubeTextures = { 1.0000f, 1.0000f, 1.0000f, 0.0000f,
+    private float[] cubeTextures = {1.0000f, 1.0000f, 1.0000f, 0.0000f,
             0.0000f, 0.0000f, 0.0000f, 0.0000f, 0.0000f, 1.0000f, 1.0000f,
             1.0000f, 0.0000f, 1.0000f, 1.0000f, 1.0000f, 1.0000f, 0.0000f,
             1.0000f, 0.0000f, 0.0000f, 0.0000f, 0.0000f, 1.0000f, 0.0000f,
@@ -55,7 +55,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
             0.0000f, 1.0000f, 0.0000f, 1.0000f, 1.0000f, 1.0000f, 1.0000f,
             0.0000f, 1.0000f, 0.0000f, 0.0000f, 0.0000f, 0.0000f, 1.0000f,
             0.0000f, 1.0000f, 1.0000f, 1.0000f, 1.0000f, 0.0000f, 1.0000f,
-            0.0000f, 0.0000f, 0.0000f, 0.0000f, 1.0000f };
+            0.0000f, 0.0000f, 0.0000f, 0.0000f, 1.0000f};
 
     private Context context;
     private FloatBuffer cubeVerticesBuffer;
@@ -155,8 +155,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         Bitmap bitmap = null;
         try {
             // 加载位图
-            bitmap = BitmapFactory.decodeResource(context.getResources(),
-                    R.drawable.icon);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.icon);
             int[] textures = new int[1];
             // 指定生成N个纹理（第一个参数指定生成1个纹理），
             // textures数组将负责存储所有纹理的代号。
@@ -166,22 +165,19 @@ public class MyRenderer implements GLSurfaceView.Renderer {
             // 通知OpenGL将texture纹理绑定到GL10.GL_TEXTURE_2D目标中
             gl.glBindTexture(GL10.GL_TEXTURE_2D, texture);
             // 设置纹理被缩小（距离视点很远时被缩小）时候的滤波方式
-            gl.glTexParameterf(GL10.GL_TEXTURE_2D,
-                    GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
             // 设置纹理被放大（距离视点很近时被方法）时候的滤波方式
-            gl.glTexParameterf(GL10.GL_TEXTURE_2D,
-                    GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
             // 设置在横向、纵向上都是平铺纹理
-            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
-                    GL10.GL_REPEAT);
-            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T,
-                    GL10.GL_REPEAT);
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_REPEAT);
             // 加载位图生成纹理
             GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
         } finally {
             // 生成纹理之后，回收位图
-            if (bitmap != null)
+            if (bitmap != null) {
                 bitmap.recycle();
+            }
         }
     }
 

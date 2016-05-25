@@ -12,9 +12,9 @@ import javax.microedition.khronos.opengles.GL10;
 public class OpenGLRenderer implements Renderer {
 	private float cr,cg,cb;
 	private float[] mTriangleArray = {
-			0f,1f,0f,
-			-1f,-1f,0f,
-			1f,-1f,0f
+			0f, 0f, 0f,
+			320f, 0f, 0f,
+			160f, 480f, 0f
 	};
 
 	private FloatBuffer mTriangleBuffer;
@@ -63,13 +63,25 @@ public class OpenGLRenderer implements Renderer {
 	public void onDrawFrame(GL10 gl) {
 		// Clears the screen and depth buffer.
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+		// 启用顶点座标数据
+		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+		// 启用贴图座标数组数据
+		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY); // ①
+		// 设置当前矩阵模式为模型视图。
+		gl.glMatrixMode(GL10.GL_PROJECTION);
 		gl.glLoadIdentity();
 //		gl.glClearColor(cr,cg,cb,1.0f);
 
-		gl.glColor4f(123.0f, 255.0f, 1.0f, 1.0f);
-		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+		gl.glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
 		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mTriangleBuffer);
-		gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 3);
+//		gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 3);
+		gl.glDrawElements(GL10.GL_TRIANGLE_STRIP,3,GL10.GL_UNSIGNED_SHORT, mTriangleBuffer);
+
+		gl.glFinish();
+		// 禁用顶点、纹理座标数组
+		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+
 //		gl.glDrawElements(GL10.GL_TRIANGLES,3,GL10.GL_FLOAT, mTriangleBuffer);
 //		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 //
@@ -98,7 +110,7 @@ public class OpenGLRenderer implements Renderer {
 	 */
 	public void onSurfaceChanged(GL10 gl, int width, int height) {
 		// Sets the current view port to the new size.
-		gl.glViewport(0, 0, width, height);// OpenGL docs.
+		gl.glViewport(0, 0, width/2, height/2);// OpenGL docs.
 		// Select the projection matrix
 		gl.glMatrixMode(GL10.GL_PROJECTION);// OpenGL docs.
 		// Reset the projection matrix

@@ -30,20 +30,20 @@ public class TutorialPartI extends Activity implements GestureDetector.OnGesture
             WindowManager.LayoutParams.FLAG_FULLSCREEN); // (NEW)
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.icon);
-// 		OpenGlSurfaceView view = new OpenGlSurfaceView(this,new OpenGLRenderer(bitmap));
- 		view = new OpenGlSurfaceView(this,new MyRenderer(this));
+ 		OpenGlSurfaceView view = new OpenGlSurfaceView(this,new OpenGLRenderer(bitmap));
+// 		view = new OpenGlSurfaceView(this,new MyRenderer(this));
    		setContentView(view);
 
         // 创建手势检测器
-        detector = new GestureDetector(this, this);
+//        detector = new GestureDetector(this, this);
     }
 
 
-    @Override
-    public boolean onTouchEvent(MotionEvent me) {
-        // 将该Activity上的触碰事件交给GestureDetector处理
-        return detector.onTouchEvent(me);
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent me) {
+//        // 将该Activity上的触碰事件交给GestureDetector处理
+//        return detector.onTouchEvent(me);
+//    }
 
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,

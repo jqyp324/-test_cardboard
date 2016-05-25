@@ -10,8 +10,8 @@ import android.view.MotionEvent;
  */
 public class OpenGlSurfaceView extends GLSurfaceView {
 
-//    private OpenGLRenderer mRenderer;
-    private MyRenderer mRenderer;
+    private OpenGLRenderer mRenderer;
+//    private MyRenderer mRenderer;
 
     /**
      * Standard View constructor. In order to render something, you
@@ -23,17 +23,17 @@ public class OpenGlSurfaceView extends GLSurfaceView {
         super(context);
     }
 
-//    public OpenGlSurfaceView(Context context,OpenGLRenderer renderer){
-//        super(context);
-//        mRenderer = renderer;
-//        setRenderer(renderer);
-//    }
-
-    public OpenGlSurfaceView(Context context,MyRenderer renderer){
+    public OpenGlSurfaceView(Context context,OpenGLRenderer renderer){
         super(context);
         mRenderer = renderer;
         setRenderer(renderer);
     }
+
+//    public OpenGlSurfaceView(Context context,MyRenderer renderer){
+//        super(context);
+//        mRenderer = renderer;
+//        setRenderer(renderer);
+//    }
 
     /**
      * Standard View constructor. In order to render something, you
@@ -49,13 +49,13 @@ public class OpenGlSurfaceView extends GLSurfaceView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-//        mRenderer.setColor(event.getX()/getWidth(),event.getY()/getHeight(),1.0f);
+        mRenderer.setColor(event.getX()/getWidth(),event.getY()/getHeight(),1.0f);
 
         return super.onTouchEvent(event);
     }
 
     public void setAngle(float x,float y){
-        mRenderer.setAngle(x,y);
+//        mRenderer.setAngle(x,y);
     }
 
 }
