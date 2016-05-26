@@ -4,6 +4,7 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
 /**
  * Created by yupeng on 2016/5/24.
@@ -26,10 +27,18 @@ public class OpenGlSurfaceView extends GLSurfaceView {
     public OpenGlSurfaceView(Context context,OpenGLRenderer renderer){
         super(context);
         mRenderer = renderer;
+
         setRenderer(renderer);
     }
 
-//    public OpenGlSurfaceView(Context context,MyRenderer renderer){
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        mRenderer.setHeight(View.MeasureSpec.getSize(heightMeasureSpec));
+        mRenderer.setWidth(View.MeasureSpec.getSize(widthMeasureSpec));
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    //    public OpenGlSurfaceView(Context context,MyRenderer renderer){
 //        super(context);
 //        mRenderer = renderer;
 //        setRenderer(renderer);
