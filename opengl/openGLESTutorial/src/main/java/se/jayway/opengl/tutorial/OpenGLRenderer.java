@@ -97,7 +97,7 @@ public class OpenGLRenderer implements Renderer {
 		// 启用贴图座标数组数据
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY); // ①
 		// 设置当前矩阵模式为模型视图。
-		gl.glMatrixMode(GL10.GL_PROJECTION);
+//		gl.glMatrixMode(GL10.GL_PROJECTION);
 //		gl.glMatrixMode(GL10.GL_MODELVIEW);
 		gl.glLoadIdentity();
 //		gl.glClearColor(cr,cg,cb,1.0f);
@@ -110,7 +110,7 @@ public class OpenGLRenderer implements Renderer {
 //		gl.glDrawElements(GL10.GL_TRIANGLE_STRIP,3,GL10.GL_UNSIGNED_SHORT,indices );
 
 		gl.glTranslatef(1.5f, 0.0f, -6.0f);
-		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mQuadsBuffer);
+		gl.glVertexPointer(4, GL10.GL_FLOAT, 0, mQuadsBuffer);
 		gl.glDrawArrays(GL10.GL_TRIANGLE_FAN, 0, 4);
 
 		gl.glFinish();
