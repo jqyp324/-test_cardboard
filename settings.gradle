@@ -2,7 +2,7 @@
 // building them.
 
 // Explicitly load all the libraries and samples using their full path.
-include ':libraries:audio'
+include ':libraries:audio', 'samples:vrvideoue'
 include ':libraries:common'
 include ':libraries:commonwidget'
 include ':libraries:core'
